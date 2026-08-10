@@ -109,7 +109,7 @@ const SupplierBalanceAutocomplete = () => {
     try {
       const res = await api.get("/wallet/getSugg",{
         headers: {
-          "x-api-key": "qwertasdf12345qazwsxedc2003",
+          "x-api-key": import.meta.env.VITE_API_X_API_KEY,
           "Content-Type": "application/json",
         },
       });
@@ -125,9 +125,9 @@ const SupplierBalanceAutocomplete = () => {
 
   const fetchSuppliers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/v1/suppliers/getAllSupplierName",{
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/suppliers/getAllSupplierName`,{
                         headers: {
-          "x-api-key": "qwertasdf12345qazwsxedc2003",
+          "x-api-key": import.meta.env.VITE_API_X_API_KEY,
           "Content-Type": "application/json",
         },
       });
@@ -167,9 +167,9 @@ const SupplierBalanceAutocomplete = () => {
       setSelectedSupplierId(s._id);
       setSearch(s.name);
       setSuggestions([]);
-      const res = await axios.get(`http://localhost:5000/v1/suppliers/${s._id}`,{
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/suppliers/${s._id}`,{
                 headers: {
-          "x-api-key": "qwertasdf12345qazwsxedc2003",
+          "x-api-key": import.meta.env.VITE_API_X_API_KEY,
           "Content-Type": "application/json",
         },
       });
@@ -284,16 +284,16 @@ const SupplierBalanceAutocomplete = () => {
 
       const endpoint = transactionType === "debt" ? "addDebt" : "paySupplier";
       
-      await axios.patch(`http://localhost:5000/v1/suppliers/${endpoint}/${supplier._id}`, payload,{        headers: {
-          "x-api-key": "qwertasdf12345qazwsxedc2003",
+      await axios.patch(`${import.meta.env.VITE_API_BASE_URL}/suppliers/${endpoint}/${supplier._id}`, payload,{        headers: {
+          "x-api-key": import.meta.env.VITE_API_X_API_KEY,
           "Content-Type": "application/json",
         },});
       
       showAlert({ title: "تمت العملية بنجاح", icon: "success" });
 
-      const updatedSupplier = await axios.get(`http://localhost:5000/v1/suppliers/${supplier._id}`,{
+      const updatedSupplier = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/suppliers/${supplier._id}`,{
                 headers: {
-          "x-api-key": "qwertasdf12345qazwsxedc2003",
+          "x-api-key": import.meta.env.VITE_API_X_API_KEY,
           "Content-Type": "application/json",
         },
       });

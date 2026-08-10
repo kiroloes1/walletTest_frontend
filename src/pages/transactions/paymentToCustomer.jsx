@@ -103,7 +103,7 @@ const CustomerBalanceAutocomplete = () => {
     try {
       const res = await api.get("/wallet/getSugg",{
         headers: {
-          "x-api-key": "qwertasdf12345qazwsxedc2003",
+          "x-api-key": import.meta.env.VITE_API_X_API_KEY,
           "Content-Type": "application/json",
         },
       });
@@ -119,9 +119,9 @@ const CustomerBalanceAutocomplete = () => {
 
   const fetchSuppliers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/v1/customers/getAllSupplierName",{
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/customers/getAllSupplierName`,{
                 headers: {
-          "x-api-key": "qwertasdf12345qazwsxedc2003",
+          "x-api-key": import.meta.env.VITE_API_X_API_KEY,
           "Content-Type": "application/json",
         },
       });
@@ -161,9 +161,9 @@ const CustomerBalanceAutocomplete = () => {
       setSelectedSupplierId(s._id);
       setSearch(s?.name);
       setSuggestions([]);
-      const res = await axios.get(`http://localhost:5000/v1/customers/${s._id}`,{
+      const res = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/customers/${s._id}`,{
            headers: {
-          "x-api-key": "qwertasdf12345qazwsxedc2003",
+          "x-api-key": import.meta.env.VITE_API_X_API_KEY,
           "Content-Type": "application/json",
         },
       });
@@ -279,11 +279,11 @@ const CustomerBalanceAutocomplete = () => {
       const endpoint = transactionType === "debt" ? "addDebt" : "paySupplier";
       
 await axios.patch(
-  `http://localhost:5000/v1/customers/${endpoint}/${supplier._id}`,
+  `${import.meta.env.VITE_API_BASE_URL}/customers/${endpoint}/${supplier._id}`,
   payload,
   {
     headers: {
-      "x-api-key": "qwertasdf12345qazwsxedc2003",
+      "x-api-key": import.meta.env.VITE_API_X_API_KEY,
       "Content-Type": "application/json",
     },
   }
@@ -291,9 +291,9 @@ await axios.patch(
       
       showAlert({ title: "تمت العملية بنجاح", icon: "success" });
 
-      const updatedSupplier = await axios.get(`http://localhost:5000/v1/customers/${supplier._id}`,{
+      const updatedSupplier = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/customers/${supplier._id}`,{
                         headers: {
-          "x-api-key": "qwertasdf12345qazwsxedc2003",
+          "x-api-key": import.meta.env.VITE_API_X_API_KEY,
           "Content-Type": "application/json",
         },
       });
