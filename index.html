@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+نظام أولاد موسى</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/tahoma" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script> 
+
+        <style>
+
+  body { font-family: 'Cairo' !important ;
+        font-size: 10px !important; 
+ }
+  /* --- Custom Scrollbar Styling --- */
+
+/* 1. السكرول بار نفسه (العرض والارتفاع) */
+::-webkit-scrollbar {
+  width: 6px;  /* خليه نحيف عشان يبان Modern */
+  height: 6px; /* للسكرول الأفقي لو ظهر */
+}
+
+/* 2. المجرى (الخلفية اللي بيمشي عليها) */
+::-webkit-scrollbar-track {
+  background: #F8FAFC; /* نفس لون خلفية الصفحة عندك */
+  border-radius: 100px;
+}
+
+/* 3. القبضة (الجزء اللي بيتحرك) */
+::-webkit-scrollbar-thumb {
+  background: #E2E8F0; /* لون هادي مش فاقع */
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+
+/* 4. عند الوقوف بالماوس (Hover) */
+::-webkit-scrollbar-thumb:hover {
+  background: #0F172A; /* يقلب كحلي لما المستخدم يلمسه */
+}
+
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E2E8F0 #F8FAFC;
+}
+</style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
