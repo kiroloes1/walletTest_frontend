@@ -3,7 +3,7 @@ import axios from "axios";
 
 
 const SERVERS = [
-  "http://localhost:4000/v1",
+  "https://wallet-test-backend.vercel.app/v1",
   //  "https://wallet-three-black.vercel.app/v1",
   // "https://wallet-one-lemon.vercel.app/v1",
  
