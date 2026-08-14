@@ -299,6 +299,8 @@ await axios.patch(
       });
       setSupplier(updatedSupplier.data.data);
       fetchSuppliers();
+             setPayment(updatedSupplier.data.payment || []);
+
 
       setAmount("");
       setNote("");
