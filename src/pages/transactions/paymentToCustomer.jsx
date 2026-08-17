@@ -276,7 +276,7 @@ const CustomerBalanceAutocomplete = () => {
         } : {})
       };
 
-      const endpoint = transactionType === "debt" ? "addDebt" : "paySupplier";
+      const endpoint = transactionType == "debt" ? "addDebt" : "paySupplier";
       
 await axios.patch(
   `${import.meta.env.VITE_API_BASE_URL}/customers/${endpoint}/${supplier._id}`,
@@ -929,7 +929,7 @@ await axios.patch(
                         : "text-slate-400 hover:text-cyan-600"
                     }`}
                   >
-                   دفع للتاجر(-)
+                   دفع للتاجر(+)
                   </button>
                   <button
                     onClick={() => {setTransactionType("payment")
@@ -960,7 +960,7 @@ await axios.patch(
                         : "text-slate-400 hover:text-cyan-600"
                     }`}
                   >
-                     استلام دفعه(+)
+                     استلام دفعه(-)
                   </button>
                 </div>
 
