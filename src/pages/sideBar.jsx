@@ -141,11 +141,11 @@ const Sidebar = ({ role }) => {
         label: "العملاء",
         roles: ["admin", "manager", "superadmin"]
       },
-            {
-        id: "paymentToSupplier",
-        label: "التجار",
-        roles: ["admin", "manager", "superadmin"]
-      }
+      //       {
+      //   id: "paymentToSupplier",
+      //   label: "التجار",
+      //   roles: ["admin", "manager", "superadmin"]
+      // }
     ]
   },
 
