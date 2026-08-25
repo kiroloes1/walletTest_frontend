@@ -74,13 +74,13 @@ const ManageAdmins = () => {
   );
 
   if (loading) return (
-    <div className="font-['cairo'] h-96 flex items-center justify-center">
+    <div className=" h-96 flex items-center justify-center">
       <Loader2 className="animate-spin text-cyan-500" size={40} />
     </div>
   );
 
 return (
-    <div className="font-['cairo'] max-w-[100vw] p-6 space-y-6" dir="rtl">
+    <div className="max-w-[100vw] p-6 space-y-6" dir="rtl">
       {/* Header & Search Area */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 bg-white p-6 rounded-[24px] border border-slate-100 shadow-sm">
         <div>

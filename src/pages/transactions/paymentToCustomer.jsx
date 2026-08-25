@@ -59,7 +59,7 @@ const CustomerBalanceAutocomplete = () => {
 
   const [date, setDate] = useState(
     new Date().toLocaleString("sv-SE", {
-      timeZone: "Africa/Cairo",
+         timeZone: "Africa/Cairo",
     }).slice(0, 16)
   );
 
@@ -305,7 +305,7 @@ await axios.patch(
       setAmount("");
       setNote("");
       setDate(    new Date().toLocaleString("sv-SE", {
-      timeZone: "Africa/Cairo",
+      timeZone: "Africa/",
     }).slice(0, 16));
       setPaymentData({
         paidAmount: 0,

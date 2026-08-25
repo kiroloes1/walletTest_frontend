@@ -97,6 +97,11 @@ const Sidebar = ({ role }) => {
         label: "إنشاء عملية",
         roles: ["admin", "manager", "superadmin"]
       },
+            {
+        id: "externalTransaction",
+        label: "إنشاء عمليه خارجيه",
+        roles: ["admin", "manager", "superadmin"]
+      },
       {
         id: "transactionsList",
         label: "عرض العمليات",
@@ -109,12 +114,7 @@ const Sidebar = ({ role }) => {
         roles: ["admin", "manager", "superadmin"]
       }
 
-            ,
-      {
-        id: "TransactionReport",
-        label: " طباعه العمليات ",
-        roles: ["admin", "manager", "superadmin"]
-      }
+
 
                   ,
       {
@@ -179,6 +179,21 @@ const Sidebar = ({ role }) => {
       {
         id: "profileView",
         label: "عرض الصفحة الشخصية",
+        roles: ["admin", "manager", "superadmin"]
+      }
+    ]
+  },
+
+    // PROFILE
+  {
+    id: "backup",
+    label: " النسخ الاحتياطي ",
+    icon: <Settings size={20} />,
+    roles: ["admin", "manager", "superadmin"],
+    sub: [
+      {
+        id: "backup",
+        label: "اعدادات النسخ الاحتياطي ",
         roles: ["admin", "manager", "superadmin"]
       }
     ]

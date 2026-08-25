@@ -3,7 +3,11 @@ import {
   Wallet, ArrowUpCircle, ArrowDownCircle, AlertTriangle, 
   Activity, Repeat, Landmark, TrendingUp, Clock, CheckCircle2,
   ShieldCheck, ArrowRightLeft, PieChart as PieIcon,
-  TrendingDown
+  TrendingDown,
+  CloudLightning,
+  Settings,
+  CheckCircle,
+  Cloud
 } from 'lucide-react';
 import api from '../../services/api';
 import { 
@@ -11,9 +15,12 @@ import {
   Tooltip, ResponsiveContainer, Cell, PieChart, Pie
 } from 'recharts';
 
+import { isLastBackupValid } from '../../services/lastBackupNotification';
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+
+    const [isLastBackup, setIsLastBackup] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -32,6 +39,17 @@ const Dashboard = () => {
     fetchStats();
   }, []);
 
+    const MakeSureIsLastBackup = async () => {
+    const res = await isLastBackupValid();
+    setIsLastBackup(res);
+  };
+
+  useEffect(() => {
+    MakeSureIsLastBackup();
+
+  }, []);
+
+
   if (loading) return (
     <div className="flex h-96 items-center justify-center font-black text-slate-300 animate-pulse text-xl">
       جاري تحليل البيانات المالية...
@@ -45,7 +63,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className=" mx-auto p-6 space-y-8 text-right font-['cairo']" dir="rtl">
+    <div className=" mx-auto p-6 space-y-8 text-right " dir="rtl">
       
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -113,20 +131,20 @@ const Dashboard = () => {
             color="blue" 
             trend="منذ البداية"
         />
-        <StatCard 
+        {/* <StatCard 
             title="المحافظ المعطلة" 
             value={stats?.wallets.inactiveWallets} 
             icon={<AlertTriangle size={24}/>} 
             color="red" 
             trend="تحتاج مراجعة"
-        />
+        /> */}
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* مقارنة عامة */}
-        <div className="lg:col-span-2 bg-white p-8 rounded-xl border border-slate-100 -sm">
+{/*         <div className="lg:col-span-2 bg-white p-8 rounded-xl border border-slate-100 -sm">
           <h3 className="text-lg font-black text-slate-800 mb-8 flex items-center gap-2">
             <Activity className="text-blue-500" size={20}/> تحليل حركة الأموال الكلية
           </h3>
@@ -147,10 +165,10 @@ const Dashboard = () => {
               </BarChart>
             </ResponsiveContainer>
           </div>
-        </div>
+        </div> */}
 
         {/* كروت الحالة الجانبية */}
-        <div className="space-y-6">
+ 
           {/* كارت الـ Near Limit */}
           <div className={`p-8 rounded-xl border transition-all ${stats?.wallets.nearLimitWallets > 0 ? 'bg-red-50 border-red-100' : 'bg-slate-50 border-slate-100'}`}>
             <h4 className="font-black text-slate-800 mb-2">محافظ قريبة من الحد</h4>
@@ -174,12 +192,66 @@ const Dashboard = () => {
           </div>
         </div>
 
+
+
+                    {/* Backup Status Card */}
+      <div className='mt-8'>
+        <div className="bg-white p-8 rounded-[1.5rem] border border-gray-200 shadow-sm relative overflow-hidden">
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className={`p-3 ${isLastBackup ? 'bg-green-50' : 'bg-orange-50'} rounded-2xl`}>
+                  <Cloud size={32} className={isLastBackup ? 'text-green-600' : 'text-orange-500'} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-black text-dark">النسخ الاحتياطي السحابي</h3>
+                  <p className="text-gray-400 font-bold text-sm">تأمين بيانات النظام على Cloud</p>
+                </div>
+              </div>
+              <span className={`px-4 py-1 rounded-full text-xs font-black ${isLastBackup ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
+                {isLastBackup ? 'متصل وآمن' : 'غير متصل'}
+              </span>
+            </div>
+
+            {isLastBackup ? (
+              <div className="space-y-4">
+                <h2 className="text-4xl font-black text-dark mb-2">
+                  البيانات محمية <span className="text-green-600">بنجاح</span>
+                </h2>
+                <div className="flex items-center gap-2 text-gray-500 font-bold bg-gray-50 p-4 rounded-2xl border border-dashed border-gray-200">
+                  <CheckCircle size={20} className="text-green-600" />
+                  يتم رفع النسخ التلقائية يوميًا دون تدخل منك.
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <h2 className="text-4xl font-black text-red-600 mb-2">
+                  تنبيه: حماية <span className="text-dark">معطلة</span>
+                </h2>
+                <p className="text-gray-500 font-bold text-sm leading-relaxed">
+                  النظام لا يقوم بالنسخ الاحتياطي حاليًا. يرجى ربط حسابك لتجنب فقدان البيانات في حالة الطوارئ.
+                </p>
+                <a
+                  href="/backup"
+                  className="inline-flex items-center gap-2 bg-dark text-white px-6 py-3 rounded-xl font-black hover:bg-opacity-90 transition-all active:scale-95 shadow-lg shadow-gray-200"
+                >
+                  <Settings size={18} />
+                  ربط الحساب من الإعدادات
+                </a>
+              </div>
+            )}
+          </div>
+          <CloudLightning
+            className={`absolute -left-10 -bottom-10 w-48 h-48 opacity-5 ${isLastBackup ? 'text-green-600' : 'text-red-600'}`}
+          />
+        </div>
       </div>
+
     </div>
   );
 };
 
-// مكونات صغيرة (Helper Components)
+
 const StatCard = ({ title, value, icon, color, trend }) => {
   const themes = {
     emerald: "bg-emerald-50 text-emerald-600 border-emerald-100",

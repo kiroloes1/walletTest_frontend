@@ -5,6 +5,7 @@ import { Loader2, Search, Calendar, Printer, User, Wallet, ArrowDownLeft, ArrowU
 import api from '../../services/api';
 import { showAlert } from '../../services/alert';
 import html2pdf from "html2pdf.js";
+import ExportExcelButton from '../../services/exportExcelButton';
 export default function MerchantReportManager() {
   // حالات البحث والفلترة
   const [people, setPeople] = useState([]);
@@ -348,6 +349,12 @@ export default function MerchantReportManager() {
               >
                 {sharing ? "جاري التحضير..." : "مشاركة PDF"}
               </button>
+
+                             <ExportExcelButton
+                      
+                        data={reportData.transactions}
+  fileName={`عرض عمليات التاجر ${searchName}`}
+  sheetName={`عرض عمليات التاجر ${searchName}`} />
            </div>
 
             </div>

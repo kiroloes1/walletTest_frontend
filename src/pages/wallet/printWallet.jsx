@@ -8,6 +8,7 @@ import api from '../../services/api';
 import moment from 'moment';
 import 'moment/locale/ar';
 import html2pdf from "html2pdf.js";
+import ExportExcelButton from '../../services/exportExcelButton';
 const WalletStatement = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -119,11 +120,11 @@ moment.locale('ar');
     };
   
 
-  if (loading) return <div className="p-10 text-center font-bold animate-pulse text-slate-400 font-['cairo']">جاري إصدار الوثيقة الرسمية...</div>;
-  if (!wallet) return <div className="p-10 text-center font-bold text-red-600 font-['cairo']">عفواً، السجل غير متاح حالياً.</div>;
+  if (loading) return <div className="p-10 text-center font-bold animate-pulse text-slate-400 ">جاري إصدار الوثيقة الرسمية...</div>;
+  if (!wallet) return <div className="p-10 text-center font-bold text-red-600 ">عفواً، السجل غير متاح حالياً.</div>;
 
   return (
-    <div className="min-h-screen bg-neutral-100 p-0 md:p-10 font-['cairo']print:bg-white print:p-0" dir="rtl">
+    <div className="min-h-screen bg-neutral-100 p-0 md:p-10 print:bg-white print:p-0" dir="rtl">
       
       {/* Control Panel - Hidden in Print */}
       <div className="max-w-[210mm] mx-auto mb-6 flex justify-between items-center print:hidden px-6">
@@ -144,6 +145,12 @@ moment.locale('ar');
           >
             {sharing ? "جاري التحضير..." : "مشاركة PDF"}
           </button>
+
+                                <ExportExcelButton
+                      
+                        data={[wallet]}
+  fileName={`محفظه ${wallet.walletName}`}
+  sheetName= {`محفظه ${wallet.walletName}`}/>
         </div>
       </div>
 

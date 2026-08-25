@@ -21,7 +21,9 @@ const TransactionReport = () => {
     const fetchTransactions = async () => {
         setLoading(true);
         try {
-            const res = await api.get('/transaction/2');
+            const res = await api.get('/transaction',{params:{
+                all:true
+            }});
             setTransactions(res.data.transactions);
         } catch (err) { 
             console.error(err); 
@@ -62,7 +64,10 @@ const TransactionReport = () => {
                 (tx.senderName?.toLowerCase().includes(searchTerm.toLowerCase())) || 
                 (tx.receiverName?.toLowerCase().includes(searchTerm.toLowerCase())) || 
                 (tx.walletId?.walletName?.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                     (tx.receiverPhone?.includes(searchTerm));
                 (tx.senderPhone?.includes(searchTerm));
+          
+
 
             return matchesDate && matchesSearch;
         });

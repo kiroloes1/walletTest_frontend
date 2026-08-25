@@ -56,7 +56,7 @@ const CreateWalletCard = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-slate-50 to-cyan-50/30 p-4 font-[`cairo`]" dir="rtl">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-slate-50 to-cyan-50/30 p-4 " dir="rtl">
       
       <AnimatePresence mode="wait">
         {!isSaved ? (

@@ -35,7 +35,7 @@ const BackupButton = () => {
     <div
       onClick={handleBackup}
       className={`
-        font-['cairo']
+        
        no-print  fixed bottom-24 left-8 z-50 
         bg-cyan-500/20 text-[#0F172A] 
         p-4 rounded-[20px] 

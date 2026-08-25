@@ -3,6 +3,7 @@ import { Loader2, Search, Calendar, Printer, TrendingUp, TrendingDown, RefreshCw
 import api from '../../services/api';
 import { showAlert } from '../../services/alert';
 import html2pdf from "html2pdf.js";
+import ExportExcelButton from '../../services/exportExcelButton';
 
 export default function MerchantAnalyticsManager() {
   // حالات الفلترة والبحث (متطابقة تماماً مع متغيرات السيرفر)
@@ -167,6 +168,13 @@ export default function MerchantAnalyticsManager() {
             >
               {sharing ? "جاري التحضير..." : "مشاركة PDF"}
             </button>
+
+                             <ExportExcelButton
+                      
+                        data={analyticsData.data}
+  fileName={`تقارير سيستم المحافظ`}
+  sheetName={`تقارير سيستم المحافظ`} />
+            
           </div>
         )}
       </div>

@@ -94,7 +94,7 @@ const [Remember,setRemember]=useState(false)
   return (
     
     <div
-      className=" flex font-['cairo']  items-center justify-center rounded-2xl bg-cyan-500  shadow-xl shadow-gray-100 rounded-2xl"
+      className=" flex   items-center justify-center rounded-2xl bg-cyan-500  shadow-xl shadow-gray-100 rounded-2xl"
       dir="rtl"
     >  
      

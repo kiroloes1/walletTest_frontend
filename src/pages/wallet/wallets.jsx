@@ -10,6 +10,7 @@ import {
 import api from '../../services/api';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import ExportExcelButton from '../../services/exportExcelButton';
 
 const WalletDashboard = () => {
   const [wallets, setWallets] = useState([]);
@@ -65,11 +66,11 @@ const monthlyStats = useMemo(() => {
       
       if (!matchesSearch) return false;
 
-      if (activeFilter === 'active') return ((w.status === 'active')  &&  (  w.monthlyOutgoing  / w.Limit  <0.75   &&  w.monthlyIncoming / w.Limit <0.75 ));
+      if (activeFilter === 'active') return ((w.status === 'active')  &&  (  w.monthlyOutgoing  / w.Limit  <0.80   &&  w.monthlyIncoming / w.Limit <0.80 ));
       if (activeFilter === 'inactive') return w.status !== 'active';
       if (activeFilter === 'warning') {
       
-        return  ( (w.monthlyOutgoing  / w.Limit  >= 0.75) && (w.monthlyOutgoing  / w.Limit  < 1) )   || ( (w.monthlyIncoming / w.Limit >=0.75)  &&  (w.monthlyIncoming / w.Limit  < 1)   ) ; 
+        return  ( (w.monthlyOutgoing  / w.Limit  >= 0.80) && (w.monthlyOutgoing  / w.Limit  < 1) )   || ( (w.monthlyIncoming / w.Limit >=0.80)  &&  (w.monthlyIncoming / w.Limit  < 1)   ) ; 
       }
             if (activeFilter === 'endLimit') {
       
@@ -152,7 +153,7 @@ const monthlyStats = useMemo(() => {
     const { value: formValues } = await Swal.fire({
       title: 'تعديل بيانات المحفظة',
       html: `
-        <div class="flex flex-col gap-3 p-2 font-['cairo']" dir="rtl">
+        <div class="flex flex-col gap-3 p-2 " dir="rtl">
           <label class="text-right text-xs font-bold text-slate-500">اسم المحفظة</label>
           <input id="swal-name" class="swal2-input m-0 w-full rounded-lg text-sm" value="${wallet.walletName}">
                     <label class="text-right text-xs font-bold text-slate-500"> صاحب المحفظة</label>
@@ -196,7 +197,7 @@ const monthlyStats = useMemo(() => {
   if (loading) return <div className="h-screen flex items-center justify-center font-black bg-slate-50">جاري المزامنة...</div>;
 
   return (
-    <div className="w-[100vw] md:w-full overflow-auto min-h-screen bg-[#F8FAFC] flex text-slate-900 font-['cairo']" dir="rtl">
+    <div className="w-[100vw] md:w-full overflow-auto min-h-screen bg-[#F8FAFC] flex text-slate-900 " dir="rtl">
       
       <motion.aside 
         initial={false}
@@ -224,9 +225,9 @@ const monthlyStats = useMemo(() => {
           <div className="flex gap-1 p-1 bg-slate-100 rounded-lg">
             <FilterTab label={`الكل`} active={activeFilter === 'all'} onClick={() => setActiveFilter('all')} count={wallets.length} />
             <FilterTab label="نشط" active={activeFilter === 'active'} onClick={() => setActiveFilter('active')} color="emerald"                                   />
-            <FilterTab label="وصل للحد" active={activeFilter === 'endLimit'} onClick={() => setActiveFilter('endLimit')} color="rose"                             />
             <FilterTab label="تنبيه" active={activeFilter === 'warning'} onClick={() => setActiveFilter('warning')} color="amber" icon={<AlertCircle size={10}/>}  />
-            <FilterTab label="متوقف" active={activeFilter === 'inactive'} onClick={() => setActiveFilter('inactive')} color="rose"                                />
+            <FilterTab label="وصل للحد" active={activeFilter === 'endLimit'} onClick={() => setActiveFilter('endLimit')} color="rose"                             />
+         
             
           </div>
         </div>
@@ -296,7 +297,12 @@ const monthlyStats = useMemo(() => {
                     </div>
                     
                     <div className="flex gap-2 bg-slate-50 p-2 rounded-lg w-full md:w-auto justify-center">
-                      <CompactAction icon={<Power size={18}/>} color={selectedWallet.status === 'active' ? 'amber' : 'emerald'} label={selectedWallet.status === 'active' ? 'تعطيل' : 'تنشيط'} onClick={() => toggleStatus(selectedWallet)} />
+                      <ExportExcelButton
+                      
+                        data={[selectedWallet]}
+  fileName={`محفظه ${selectedWallet.walletName}`}
+  sheetName= {`محفظه ${selectedWallet.walletName}`}/>
+                      {/* <CompactAction icon={<Power size={18}/>} color={selectedWallet.status === 'active' ? 'amber' : 'emerald'} label={selectedWallet.status === 'active' ? 'تعطيل' : 'تنشيط'} onClick={() => toggleStatus(selectedWallet)} /> */}
                       <div className="w-px h-8 bg-slate-200 self-center mx-1"></div>
                       <CompactAction icon={<Edit3 size={18}/>} color="blue" label="تعديل" onClick={() => handleUpdate(selectedWallet)} />
                       <CompactAction icon={<Trash2 size={18}/>} color="red" label="حذف" onClick={() => deleteWallet(selectedWallet._id)} />
@@ -308,12 +314,12 @@ const monthlyStats = useMemo(() => {
 
                   <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
                     <MiniStat label="الرصيد الأساسي" value={selectedWallet.balance} color="cyan" icon={<Wallet size={14}/>} />
-                    <MiniStat label="قيمه رسوم التحويل " value={selectedWallet?.fees || 0} color="red" icon={<Wallet size={14}/>} />
+                    <MiniStat label="قيمه رسوم التحويل " value={selectedWallet?.fees.toFixed(0) || 0} color="red" icon={<Wallet size={14}/>} />
                     <MiniStat label=" صافي المبلغ النهائي" value={selectedWallet.balance -  (selectedWallet?.fees||0) } color="green" icon={<Wallet size={14}/>} />
                     <MiniStat label="مستلم الشهر" value={selectedWallet.monthlyIncoming} color="emerald" icon={<ArrowDownLeft size={14}/>} />
                     <MiniStat label="مرسل الشهر" value={selectedWallet.monthlyOutgoing} color="rose" icon={<ArrowUpRight size={14}/>} />
-                    <MiniStat label="إجمالي المستلم" value={selectedWallet.totalIncoming} color="indigo" icon={<TrendingUp size={14}/>} />
-                    <MiniStat label="إجمالي المرسل" value={selectedWallet.totalOutgoing} color="orange" icon={<ArrowRightLeft size={14}/>} />
+                    {/* <MiniStat label="إجمالي المستلم" value={selectedWallet.totalIncoming} color="indigo" icon={<TrendingUp size={14}/>} />
+                    <MiniStat label="إجمالي المرسل" value={selectedWallet.totalOutgoing} color="orange" icon={<ArrowRightLeft size={14}/>} /> */}
                     <MiniStat label="المتبقي للحد" value={selectedWallet.Limit - selectedWallet.balance} color="slate" icon={<Activity size={14}/>} />
                   </div>
                 </div>

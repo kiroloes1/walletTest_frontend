@@ -59,7 +59,7 @@ export default function ResetPassword() {
   }
 
   return (
-    <div dir="rtl" className="font-['cairo'] flex items-center justify-center bg-gray-100 ">
+    <div dir="rtl" className=" flex items-center justify-center bg-gray-100 ">
 
       <div className="bg-white shadow-xl overflow-hidden flex w-full">
 

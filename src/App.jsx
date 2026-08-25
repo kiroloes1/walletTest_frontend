@@ -26,6 +26,8 @@ import MerchantReportManager from "./pages/reports/transactionsPerUser";
 import MerchantAnalyticsManager from "./pages/reports/analysis";
 import CustomerBalanceAutocomplete from "./pages/transactions/paymentToCustomer";
 import SupplierBalanceAutocomplete from "./pages/transactions/paymentToSupplier";
+import BackupSettings from "./pages/settings/backupSystem";
+import CreateSupplierTransaction from "./pages/transactions/externalTransaction";
 function App() {
    const upToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -38,7 +40,7 @@ function App() {
   };
 
 return (
-  <div className="font-[Cairo]">
+  <div >
 
 
    
@@ -80,9 +82,15 @@ return (
              <Route path="TransactionReport" element={<TransactionReport/>}/>
              <Route path="TransactionAnalysis" element={<MerchantAnalyticsManager/>}/>
 
-            {/* link with two system */}
+          
+          
+                 {/* link with two system */}
              <Route path="paymentToCustomer" element={<CustomerBalanceAutocomplete/>}/>
              <Route path="paymentToSupplier" element={<SupplierBalanceAutocomplete/>}/>
+
+             <Route path="externalTransaction" element={<CreateSupplierTransaction/>}/>
+
+
 
 
 
@@ -101,6 +109,9 @@ return (
 
           {/* report */}
           <Route path="printAll" element={<PrintAll/>} />
+
+
+          <Route path="backup" element={<BackupSettings/>} />
 
 
 

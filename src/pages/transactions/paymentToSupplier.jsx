@@ -65,7 +65,7 @@ const SupplierBalanceAutocomplete = () => {
 
   const [date, setDate] = useState(
     new Date().toLocaleString("sv-SE", {
-      timeZone: "Africa/Cairo",
+      timeZone: "Africa/",
     }).slice(0, 16)
   );
 
@@ -253,7 +253,7 @@ const SupplierBalanceAutocomplete = () => {
     if (!validatePaymentData()) return;
 
     const confirmed = await showAlertConfirm({
-      title: transactionType === "debt" ? "  اضافه  مديونيه (+)" : " دفع للتاجر (-)",
+      title: transactionType === "debt" ? "  اضافه  مديونيه (-)" : " دفع للتاجر (+)",
       text: `المبلغ: ${amount} ج.م للتاجر: ${supplier.name}`,
       icon: "question"
     });
@@ -305,7 +305,7 @@ const SupplierBalanceAutocomplete = () => {
       setAmount("");
       setNote("");
       setDate(    new Date().toLocaleString("sv-SE", {
-      timeZone: "Africa/Cairo",
+      timeZone: "Africa/",
     }).slice(0, 16));
       setPaymentData({
         paidAmount: 0,

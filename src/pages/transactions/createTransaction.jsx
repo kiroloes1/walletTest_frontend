@@ -176,7 +176,7 @@ new Date().getTimezoneOffset()*60000
 const totalAmount = Number(formData.amount || 0) + fees;
 
   return (
-    <div className=" mx-auto p-6 bg-white rounded-xl -xl border border-slate-50 font-['cairo']" dir="rtl">
+    <div className=" mx-auto p-6 bg-white rounded-xl -xl border border-slate-50 " dir="rtl">
       <div className="flex items-center gap-4 mb-8">
         <div className="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center text-white">
           <Send size={24} />
@@ -327,7 +327,15 @@ const totalAmount = Number(formData.amount || 0) + fees;
           <div className="space-y-2">
             <label className="text-xs font-black text-slate-500 mr-2 uppercase tracking-widest">المبلغ (Amount) *</label>
             <input 
-              type="number" required
+              type="number" 
+              required
+               min="1"
+              max="99999"
+                onInput={(e) => {
+    if (e.target.value.length > 5) {
+      e.target.value = e.target.value.slice(0, 5);
+    }
+  }}
               className="w-full bg-slate-900 text-white rounded-lg p-4 font-black text-xl outline-none placeholder:text-slate-600"
               placeholder="0.00"
                onChange={(e)=>setFormData({...formData, amount: Number(e.target.value)})}

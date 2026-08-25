@@ -7,6 +7,7 @@ import api from '../../services/api';
 import moment from 'moment';
 import 'moment/locale/ar';
 import html2pdf from "html2pdf.js";
+import ExportExcelButton from '../../services/exportExcelButton';
 const PrintAll = () => {
   const navigate = useNavigate();
   const [stats, setStats] = useState(null);
@@ -119,6 +120,11 @@ const [sharing, setSharing] = useState(false);
           >
             {sharing ? "جاري التحضير..." : "مشاركة PDF"}
           </button>
+                         <ExportExcelButton
+                      
+                        data={walletsList}
+  fileName={"عرض  المحافظ"}
+  sheetName={"عرض  المحافظ"} />
        </div>
       </div>
 

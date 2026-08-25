@@ -36,7 +36,7 @@ const AddAdmin = () => {
   };
 
   return (
-    <div className="max-w-[100vw] mx-auto mt-10 bg-white p-8 rounded-[32px] shadow-sm border border-slate-100 font-['cairo']" dir="rtl">
+    <div className="max-w-[100vw] mx-auto mt-10 bg-white p-8 rounded-[32px] shadow-sm border border-slate-100 " dir="rtl">
       <div className="flex items-center gap-4 mb-8">
         <div className="w-12 h-12 bg-cyan-500 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-cyan-200">
           <UserPlus size={24} />
