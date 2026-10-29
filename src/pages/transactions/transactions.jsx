@@ -349,13 +349,17 @@ const handleDelete = async (tx) => {
           <div className="bg-white border border-slate-200 rounded-lg px-6 py-3 shadow-sm">
             <p className="text-xs text-slate-400 font-bold">إجمالي الإرسال</p>
             <p className="text-xl font-black text-red-600">
-              {transactions.filter(tx => tx.type === 'send').reduce((sum, tx) => sum + (tx.amount || 0), 0).toLocaleString()} ج.م
+              {transactions.filter(tx => tx.type === 'send').reduce((sum, tx) => sum + (tx.amount || 0), 0).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
             </p>
           </div>
           <div className="bg-white border border-slate-200 rounded-lg px-6 py-3 shadow-sm">
             <p className="text-xs text-slate-400 font-bold">إجمالي الاستلام</p>
             <p className="text-xl font-black text-green-600">
-              {transactions.filter(tx => tx.type === 'receive').reduce((sum, tx) => sum + (tx.amount || 0), 0).toLocaleString()} ج.م
+              {transactions.filter(tx => tx.type === 'receive').reduce((sum, tx) => sum + (tx.amount || 0), 0).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
             </p>
           </div>
 
@@ -408,10 +412,12 @@ const handleDelete = async (tx) => {
                       </td>
                       <td className="p-5 font-black text-base">
                         <span className={role === "sender" ? "text-red-600" : "text-green-600"}>
-                          {role === "sender" ? "-" : "+"} {tx.amount.toLocaleString()} ج.م
+                          {role === "sender" ? "-" : "+"} {tx.amount.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
                         </span>
                       </td>
-                      <td className="p-5 text-slate-500 font-bold">{tx.walletId?.walletName || "غير معروف"}</td>
+                      <td className="p-5 text-slate-500 font-bold">{tx.walletId?.walletName || "تحويل خارجي "}</td>
                       <td className="p-5">
                         <p className="text-slate-700 font-bold">{moment(tx.createdAt).tz("Africa/Cairo").format("YYYY-MM-DD")}</p>
                         <p className="text-[10px] text-slate-400">{moment(tx.createdAt).tz("Africa/Cairo").format("hh:mm A")}</p>
@@ -473,7 +479,9 @@ const handleDelete = async (tx) => {
                 <div className="grid grid-cols-2 gap-8">
                   <DetailItem label="المرسل" value={viewData.senderName} subValue={viewData.senderPhone} icon={<User size={16}/>} />
                   <DetailItem label="المستلم" value={viewData.receiverName} subValue={viewData.receiverPhone} icon={<User size={16}/>} />
-                  <DetailItem label="المبلغ" value={`${viewData.amount.toLocaleString()} ج.م`} highlight icon={<Hash size={16}/>} />
+                  <DetailItem label="المبلغ" value={`${viewData.amount.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م`} highlight icon={<Hash size={16}/>} />
                   <DetailItem label="المحفظة" value={viewData.walletId?.walletName} subValue={viewData.walletId?.walletProvider} icon={<Wallet size={16}/>} />
                 </div>
                 <div className="p-6 bg-slate-50 rounded-[1.5rem] border border-slate-100 grid grid-cols-2 gap-4">
@@ -524,8 +532,10 @@ const handleDelete = async (tx) => {
               return (
                 <tr key={tx._id}>
                   <td style={tdStyle}>{tx.senderName || "—"} ← {tx.receiverName || "—"}</td>
-                  <td style={tdStyle}>{role === "sender" ? "-" : "+"} {tx.amount.toLocaleString()} ج.م</td>
-                  <td style={tdStyle}>{tx.walletId?.walletName || "غير معروف"}</td>
+                  <td style={tdStyle}>{role === "sender" ? "-" : "+"} {tx.amount.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م</td>
+                  <td style={tdStyle}>{tx.walletId?.walletName || "تحويل خارجي "}</td>
                   <td style={tdStyle}>{moment(tx.createdAt).tz("Africa/Cairo").format("YYYY-MM-DD hh:mm A")}</td>
                 </tr>
               );
@@ -549,7 +559,9 @@ const handleDelete = async (tx) => {
             color: '#c53030',
             background: '#fff5f5'
           }}>
-            إجمالي الإرسال: {printTotals.totalSent.toLocaleString()} ج.م
+            إجمالي الإرسال: {printTotals.totalSent.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
           </div>
           <div style={{ 
             padding: '12px 25px', 
@@ -559,7 +571,9 @@ const handleDelete = async (tx) => {
             color: '#2f855a',
             background: '#f0fff4'
           }}>
-            إجمالي الاستلام: {printTotals.totalReceived.toLocaleString()} ج.م
+            إجمالي الاستلام: {printTotals.totalReceived.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
           </div>
           <div style={{ 
             padding: '12px 25px', 
@@ -569,7 +583,9 @@ const handleDelete = async (tx) => {
             color: '#fff',
             background: '#000'
           }}>
-            صافي (الفرق): {(printTotals.totalReceived - printTotals.totalSent).toLocaleString()} ج.م
+            صافي (الفرق): {(printTotals.totalReceived - printTotals.totalSent).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
           </div>
         </div>
       </div>

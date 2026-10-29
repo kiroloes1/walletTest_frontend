@@ -193,7 +193,7 @@ export default function MerchantReportManager() {
       <div className="no-print bg-white rounded-xl border border-gray-100 p-5 shadow-sm mb-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
           
-          {/* حقل البحث الذكي عن التاجر */}
+          {/* حقل البحث  عن التاجر */}
           <div className="relative" ref={suggestionsRef}>
             <label className="block text-xs font-black text-slate-700 mb-2 flex items-center gap-1">
               <User size={13} className="text-[#0284c7]" /> اسم التاجر / الزبون
@@ -298,7 +298,9 @@ export default function MerchantReportManager() {
             <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
               <div>
                 <p className="text-[11px] font-black text-gray-400 mb-1">إجمالي ما تم استلامه</p>
-                <h3 className="text-lg font-black text-emerald-600 font-sans">{reportData.totalReceived.toLocaleString()} ج.م</h3>
+                <h3 className="text-lg font-black text-emerald-600 font-sans">{reportData.totalReceived.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م</h3>
               </div>
               <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl"><ArrowDownLeft size={20} /></div>
             </div>
@@ -306,7 +308,9 @@ export default function MerchantReportManager() {
             <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex items-center justify-between">
               <div>
                 <p className="text-[11px] font-black text-gray-400 mb-1">إجمالي ما تم إرساله</p>
-                <h3 className="text-lg font-black text-red-600 font-sans">{reportData.totalSent.toLocaleString()} ج.م</h3>
+                <h3 className="text-lg font-black text-red-600 font-sans">{reportData.totalSent.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م</h3>
               </div>
               <div className="p-3 bg-red-50 text-red-600 rounded-xl"><ArrowUpRight size={20} /></div>
             </div>
@@ -383,7 +387,9 @@ export default function MerchantReportManager() {
                         {tx.role === 'receiver' && <span className="text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded text-[10px]">مستلم</span>}
                         {tx.role === 'sender & receiver' && <span className="text-sky-600 bg-sky-50 px-2 py-0.5 rounded text-[10px]">داخلي</span>}
                       </td>
-                      <td className="p-3.5 font-sans text-slate-900 font-black">{tx.amount.toLocaleString()} ج.م</td>
+                      <td className="p-3.5 font-sans text-slate-900 font-black">{tx.amount.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م</td>
                       {/* <td className="p-3.5">
                         {tx.walletNumber ? (
                           <div>

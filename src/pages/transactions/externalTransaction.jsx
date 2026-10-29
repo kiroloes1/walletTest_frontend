@@ -192,7 +192,9 @@ const CreateSupplierTransaction = () => {
                       </div>
                       <div className="text-left">
                         <p className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">
-                          الرصيد: {Number(sup.balance || 0).toLocaleString()}
+                          الرصيد: {Number(sup.balance || 0).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })}
                         </p>
                       </div>
                     </li>
@@ -214,7 +216,9 @@ const CreateSupplierTransaction = () => {
             <div>
               <p className="text-[10px] font-black text-emerald-500 uppercase">رصيد التاجر الحالي</p>
               <p className="text-xl font-black text-emerald-900">
-                {Number(selectedSupplier.balance || 0).toLocaleString()}{' '}
+                {Number(selectedSupplier.balance || 0).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })}{' '}
                 <small className="text-xs">ج.م</small>
               </p>
             </div>

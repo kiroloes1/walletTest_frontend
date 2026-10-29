@@ -58,8 +58,8 @@ const Dashboard = () => {
 
   // بيانات الرسم البياني للمستلم والمرسل
   const barData = [
-    { name: 'إجمالي المستلم', value: stats?.transactions.totalIncoming, color: '#10b981' },
-    { name: 'إجمالي المرسل', value: stats?.transactions.totalOutgoing, color: '#f59e0b' },
+    // { name: 'إجمالي المستلم', value: stats?.transactions.totalIncoming, color: '#10b981' },
+    // { name: 'إجمالي المرسل', value: stats?.transactions.totalOutgoing, color: '#f59e0b' },
   ];
 
   return (
@@ -88,7 +88,11 @@ const Dashboard = () => {
             <div className="space-y-2 text-center md:text-right">
                 <p className="text-slate-400 font-black text-sm uppercase tracking-widest">إجمالي أرصدة النظام</p>
                 <h2 className="text-6xl font-black tracking-tighter tabular-nums">
-                    {stats?.wallets.totalBalance.toLocaleString()} <span className="text-2xl text-slate-500">ج.م</span>
+{new Intl.NumberFormat("en-US", {
+  maximumFractionDigits: 0,
+}).format(stats?.wallets?.totalBalance ?? 0)}
+
+<span className="text-2xl text-slate-500"> ج.م</span>
                 </h2>
             </div>
             <div className="grid grid-cols-2 gap-4 w-full md:w-auto">
@@ -117,7 +121,7 @@ const Dashboard = () => {
             color="orange" 
             trend="دفع هذا الشهر"
         />
-        <StatCard 
+        {/* <StatCard 
             title="إجمالي المستلم" 
             value={stats?.transactions.totalIncoming} 
             icon={<TrendingDown size={24}/>} 
@@ -130,7 +134,7 @@ const Dashboard = () => {
             icon={<TrendingUp size={24}/>} 
             color="blue" 
             trend="منذ البداية"
-        />
+        /> */}
         {/* <StatCard 
             title="المحافظ المعطلة" 
             value={stats?.wallets.inactiveWallets} 

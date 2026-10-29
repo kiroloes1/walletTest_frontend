@@ -160,7 +160,9 @@ const [sharing, setSharing] = useState(false);
               <div className="p-6 space-y-1 bg-neutral-100 print:bg-neutral-100">
                 <p className="text-[10px] font-black uppercase">السيولة الإجمالية بالنظام</p>
                 <p className="text-4xl font-black tabular-nums">
-                  {stats.wallets.totalBalance.toLocaleString()} <span className="text-sm font-bold">ج.م</span>
+                  {stats.wallets.totalBalance.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} <span className="text-sm font-bold">ج.م</span>
                 </p>
               </div>
             </div>
@@ -179,11 +181,15 @@ const [sharing, setSharing] = useState(false);
               <tbody className="divide-y-2 divide-black font-bold">
                 <tr>
                   <td className="p-4 text-sm border-l-2 border-black">إجمالي المبالغ المستلمة </td>
-                  <td className="p-4 text-center tabular-nums bg-neutral-50">{stats.transactions.monthlyIncoming.toLocaleString()} ج.م</td>
+                  <td className="p-4 text-center tabular-nums bg-neutral-50">{stats.transactions.monthlyIncoming.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م</td>
                 </tr>
                 <tr>
                   <td className="p-4 text-sm border-l-2 border-black">إجمالي المبالغ المرسلة </td>
-                  <td className="p-4 text-center tabular-nums bg-neutral-50">{stats.transactions.monthlyOutgoing.toLocaleString()} ج.م</td>
+                  <td className="p-4 text-center tabular-nums bg-neutral-50">{stats.transactions.monthlyOutgoing.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م</td>
                 </tr>
               </tbody>
             </table>
@@ -218,22 +224,34 @@ const [sharing, setSharing] = useState(false);
         <div className="text-[10px] font-normal">{w.ownerName} - {w.phoneNumber}</div>
       </td>
       <td className="p-2 border-l-2 border-black text-center tabular-nums">
-        {initialBalance.toLocaleString()}
+        {initialBalance.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })}
       </td>
       <td className="p-2 border-l-2 border-black text-center tabular-nums text-green-700">
-        +{w.monthlyIncoming.toLocaleString()}
+        +{w.monthlyIncoming.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })}
       </td>
       <td className="p-2 border-l-2 border-black text-center tabular-nums text-red-700">
-        -{w.monthlyOutgoing.toLocaleString()}
+        -{w.monthlyOutgoing.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })}
       </td>
         <td className="p-2 text-center border-l-2 border-black font-black tabular-nums bg-neutral-100">
-        {(w.balance).toLocaleString()} ج.م
+        {(w.balance).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
       </td>
             <td className="p-2 text-center border-l-2 border-black font-black tabular-nums bg-neutral-100">
-        {((w?.fees||0)).toLocaleString()} ج.م
+        {((w?.fees||0)).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
       </td>
       <td className="p-2 text-center font-black tabular-nums bg-neutral-100">
-        {(w.balance- (w?.fees||0)).toLocaleString()} ج.م
+        {(w.balance- (w?.fees||0)).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
       </td>
     </tr>
   );

@@ -179,7 +179,9 @@ const MonthlyTransactions = () => {
                                             {tx.type === 'send' ? 'إرسال' : 'استلام'}
                                         </span>
                                     </td>
-                                    <td className="amount-bold">{tx.amount?.toLocaleString()} ج.م</td>
+                                    <td className="amount-bold">{tx.amount?.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م</td>
                                     
                                     {/* المحفظة التي تمت منها العملية */}
                                     <td>

@@ -56,7 +56,8 @@ const Sidebar = ({ role }) => {
     return paths[id] || `/${id}`;
   };
 
- const menus = [
+
+const menus = [
   {
     id: "dashboard",
     label: "لوحة التحكم",
@@ -64,8 +65,6 @@ const Sidebar = ({ role }) => {
     roles: ["admin", "manager", "superadmin"],
     path: getDashboardPath()
   },
-
-  // WALLET
   {
     id: "wallets",
     label: "المحافظ",
@@ -84,8 +83,6 @@ const Sidebar = ({ role }) => {
       }
     ]
   },
-
-  // TRANSACTIONS
   {
     id: "transactions",
     label: "العمليات",
@@ -97,9 +94,9 @@ const Sidebar = ({ role }) => {
         label: "إنشاء عملية",
         roles: ["admin", "manager", "superadmin"]
       },
-            {
+      {
         id: "externalTransaction",
-        label: "إنشاء عمليه خارجيه",
+        label: "تحويل خارجي",
         roles: ["admin", "manager", "superadmin"]
       },
       {
@@ -107,32 +104,11 @@ const Sidebar = ({ role }) => {
         label: "عرض العمليات",
         roles: ["admin", "manager", "superadmin"]
       }
-       ,
-      {
-        id: "TransactionsPerSupplier",
-        label: " طباعه العمليات التاجر",
-        roles: ["admin", "manager", "superadmin"]
-      }
-
-
-
-                  ,
-      {
-        id: "TransactionAnalysis",
-        label: "  تحليل العمليات ",
-        roles: ["admin", "manager", "superadmin"]
-      }
     ]
   },
-
-  
-
-  
-
-  // REPORTS
   {
     id: "elmokaraz",
-    label: "تحصيلات ومدفوعات سيستم المخرز",
+    label: "تحصيلات المخرز",
     icon: <BarChart3 size={20} />,
     roles: ["admin", "manager", "superadmin"],
     sub: [
@@ -140,19 +116,30 @@ const Sidebar = ({ role }) => {
         id: "paymentToCustomer",
         label: "العملاء",
         roles: ["admin", "manager", "superadmin"]
-      },
-      //       {
-      //   id: "paymentToSupplier",
-      //   label: "التجار",
-      //   roles: ["admin", "manager", "superadmin"]
-      // }
+      }
     ]
   },
-
-  // USERS (SUPER ADMIN ONLY)
+  {
+    id: "dataAnalysis",
+    label: "تحليل البيانات",
+    icon: <BarChart3 size={20} />,
+    roles: ["admin", "manager", "superadmin"],
+    sub: [
+      {
+        id: "TransactionAnalysis",
+        label: "التحليلات",
+        roles: ["admin", "manager", "superadmin"]
+      },
+      {
+        id: "paymentToSupplier",
+        label: "عمليات التجار",
+        roles: ["admin", "manager", "superadmin"]
+      }
+    ]
+  },
   {
     id: "users",
-    label: "المستخدمين",
+    label: "المستخدمون",
     icon: <Users size={20} />,
     roles: ["superadmin"],
     sub: [
@@ -161,44 +148,46 @@ const Sidebar = ({ role }) => {
         label: "إدارة المستخدمين",
         roles: ["superadmin"]
       },
-            {
+      {
         id: "AddUsers",
-        label: "اضافه المستخدمين",
+        label: "إضافة المستخدمين",
         roles: ["superadmin"]
       }
     ]
   },
-
-  // PROFILE
-  {
-    id: "profile",
-    label: "الصفحة الشخصية",
-    icon: <Settings size={20} />,
-    roles: ["admin", "manager", "superadmin"],
-    sub: [
-      {
-        id: "profileView",
-        label: "عرض الصفحة الشخصية",
-        roles: ["admin", "manager", "superadmin"]
-      }
-    ]
-  },
-
-    // PROFILE
   {
     id: "backup",
-    label: " النسخ الاحتياطي ",
+    label: "النسخ الاحتياطي",
     icon: <Settings size={20} />,
     roles: ["admin", "manager", "superadmin"],
     sub: [
       {
         id: "backup",
-        label: "اعدادات النسخ الاحتياطي ",
+        label: "إعدادات النسخ الاحتياطي",
+        roles: ["admin", "manager", "superadmin"]
+      }
+    ]
+  },
+  {
+    id: "settings",
+    label: "الإعدادات",
+    icon: <Settings size={20} />,
+    roles: ["admin", "manager", "superadmin"],
+    sub: [
+      {
+        id: "systemSettings",
+        label: "إعدادات النظام",
+        roles: ["admin", "manager", "superadmin"]
+      },
+      {
+        id: "profileView",
+        label: "الصفحة الشخصية",
         roles: ["admin", "manager", "superadmin"]
       }
     ]
   }
 ];
+
 
   const handleLogout = async () => {
     try {

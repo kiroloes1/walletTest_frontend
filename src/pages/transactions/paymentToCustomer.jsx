@@ -829,7 +829,9 @@ await axios.patch(
                     <span className="font-bold text-cyan-600">{s?.name}</span>
                   </div>
                   <span className="text-xs font-black text-black border-cyan-600 -50 px-3 py-1 rounded-lg">
-                    رصيد: {s.balance?.toLocaleString()} ج.م
+                    رصيد: {s.balance?.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
                   </span>
                 </div>
               ))}
@@ -858,7 +860,9 @@ await axios.patch(
                     <div className="bg-white/5 p-6 rounded-2xl border border-white/10">
                       <p className="text-xs font-bold text-slate-400 mb-2">إجمالي الرصيد الحالية</p>
                       <div className="flex items-end gap-2">
-                        <span className="text-4xl font-black text-ligth -500">{supplier.balance?.toLocaleString()}</span>
+                        <span className="text-4xl font-black text-ligth -500">{supplier.balance?.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })}</span>
                         <span className="text-lg opacity-60 mb-1">ج.م</span>
                       </div>
                     </div>
@@ -1078,7 +1082,9 @@ await axios.patch(
                             {t.module === "debt" ? <ArrowUpRight size={16} /> : <ArrowDownLeft size={16} />}
                           </div>
                           <div>
-                            <p className="text-lg font-black text-cyan-600">{t.amount?.toLocaleString()} ج.م</p>
+                            <p className="text-lg font-black text-cyan-600">{t.amount?.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م</p>
                             <p className="text-md text-slate-400 font-bold">
                               {methodLabels[t.paymentMethod] || t.paymentMethod} 
                               {t.note ? ` - ${t.note}` : ''}

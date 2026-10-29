@@ -284,7 +284,9 @@ const TransactionReport = () => {
                             {filteredTransactions.map((tx) => (
                                 <tr key={tx._id}>
                                     <td style={{fontWeight: 'bold'}}>{tx.type === 'send' ? 'إرسال' : 'استلام'}</td>
-                                    <td style={{fontWeight: '900'}}>{tx.amount?.toLocaleString()} ج.م</td>
+                                    <td style={{fontWeight: '900'}}>{tx.amount?.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م</td>
                                     <td>{tx.walletId?.walletName} <br/> <small>{tx.walletId?.phoneNumber}</small></td>
                                     <td>{tx.senderName || "—"} <br/> <small>{tx.senderPhone}</small></td>
                                     <td>{tx.receiverName || "—"} <br/> <small>{tx.receiverPhone}</small></td>
@@ -297,15 +299,21 @@ const TransactionReport = () => {
 
                     <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
     <div className="total-box" style={{ borderColor: '#e53e3e', color: '#c53030' }}>
-        إجمالي الإرسال: {totals.totalSent.toLocaleString()} ج.م
+        إجمالي الإرسال: {totals.totalSent.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
     </div>
     
     <div className="total-box" style={{ borderColor: '#38a169', color: '#2f855a' }}>
-        إجمالي الاستلام: {totals.totalReceived.toLocaleString()} ج.م
+        إجمالي الاستلام: {totals.totalReceived.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
     </div>
 
     <div className="total-box" style={{ backgroundColor: '#000', color: '#fff' }}>
-        صافي  (الفرق): {(totals.totalReceived - totals.totalSent).toLocaleString()} ج.م
+        صافي  (الفرق): {(totals.totalReceived - totals.totalSent).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
     </div>
 </div>
 

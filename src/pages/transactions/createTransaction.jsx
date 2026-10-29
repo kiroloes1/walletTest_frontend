@@ -270,7 +270,9 @@ const totalAmount = Number(formData.amount || 0) + fees;
                         </div>
                     </div>
                     <div className="text-left">
-                        <p className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">رصيد: {(w.balance-(w?.fees || 0 )).toLocaleString()}</p>
+                        <p className="text-[10px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">رصيد: {(w.balance-(w?.fees || 0 )).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })}</p>
                     </div>
                   </li>
                 )) : <li className="p-4 text-center text-slate-400 font-bold text-xs">لا توجد نتائج</li>}
@@ -285,7 +287,9 @@ const totalAmount = Number(formData.amount || 0) + fees;
             <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-blue-600 -sm"><Info size={20}/></div>
             <div>
               <p className="text-[10px] font-black text-blue-400 uppercase">الرصيد المتاح حالياً</p>
-              <p className="text-xl font-black text-blue-900">{(selectedWalletDetails.balance-(selectedWalletDetails?.fees || 0)).toLocaleString()} <small className="text-xs">ج.م</small></p>
+              <p className="text-xl font-black text-blue-900">{(selectedWalletDetails.balance-(selectedWalletDetails?.fees || 0)).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} <small className="text-xs">ج.م</small></p>
             </div>
           </div>
         )}
@@ -351,14 +355,18 @@ const totalAmount = Number(formData.amount || 0) + fees;
     <div className="flex justify-between mb-2">
       <span className="font-bold text-slate-600">المبلغ</span>
       <span className="font-black">
-        {Number(formData.amount).toLocaleString()} ج.م
+        {Number(formData.amount).toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
       </span>
     </div>
 
     <div className="flex justify-between mb-2">
       <span className="font-bold text-slate-600">الرسوم</span>
       <span className="font-black text-orange-600">
-        {fees.toLocaleString()} ج.م
+        {fees.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
       </span>
     </div>
 
@@ -370,7 +378,9 @@ const totalAmount = Number(formData.amount || 0) + fees;
       </span>
 
       <span className="font-black text-lg text-emerald-600">
-        {totalAmount.toLocaleString()} ج.م
+        {totalAmount.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
       </span>
     </div>
 

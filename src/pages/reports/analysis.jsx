@@ -309,7 +309,7 @@ export default function MerchantAnalyticsManager() {
           <div className="border-b-4 border-slate-900 pb-5 flex justify-between items-start">
             <div>
               <h2 className="text-base md:text-xl font-black text-slate-900">مصنع أولاد موسى فلتس</h2>
-              <p className="text-xs font-bold text-slate-500 mt-1">منظومة الإدارة المالية الذكية للمحافظ الكاش</p>
+              <p className="text-xs font-bold text-slate-500 mt-1">منظومة الإدارة المالية ة للمحافظ الكاش</p>
             </div>
             
             <div className="text-center px-4 py-2 border-2 border-slate-900 rounded-xl bg-slate-50">
@@ -335,7 +335,9 @@ export default function MerchantAnalyticsManager() {
             <div className="p-2 border-l border-gray-200/80 last:border-0">
               <span className="text-[11px] font-bold text-slate-500 block mb-1">الاجمالي بالتقرير</span>
               <span className="text-base font-black text-slate-900 font-sans">
-                {analyticsData.grandTotal?.toLocaleString()} ج.م
+                {analyticsData.grandTotal?.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
               </span>
             </div>
             <div className="p-2 border-l border-gray-200/80 last:border-0">
@@ -411,7 +413,9 @@ export default function MerchantAnalyticsManager() {
                   ? 'text-emerald-700 bg-emerald-50/60 print:bg-transparent print:p-0' 
                   : 'text-rose-700 bg-rose-50/60 print:bg-transparent print:p-0'
               }`}>
-                {merchant.totalAmount?.toLocaleString()} ج.م
+                {merchant.totalAmount?.toLocaleString("en-US", {
+    maximumFractionDigits: 0,
+  })} ج.م
               </span>
             </td>
           </tr>

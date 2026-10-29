@@ -7,7 +7,7 @@ export default function WalletChatbot() {
 
   // States للمحادثة والبيانات
   const [messages, setMessages] = useState([
-    { id: 1, sender: 'bot', text: 'أهلاً بك في مساعد المحافظ الذكي! كيف يمكنني مساعدتك اليوم؟' }
+    { id: 1, sender: 'bot', text: 'أهلاً بك في مساعد المحافظ ! كيف يمكنني مساعدتك اليوم؟' }
   ]);
   const [searchQuery, setSearchQuery] = useState('');
   const [warningPercentage, setWarningPercentage] = useState(75);
@@ -323,7 +323,7 @@ export default function WalletChatbot() {
               <div className=" flex items-center gap-3 pointer-events-none">
                 <MessageSquare className="w-5 h-5 text-emerald-400" />
                 <div>
-                  <h2 className="font-bold text-sm">مساعد المحافظ الذكي</h2>
+                  <h2 className="font-bold text-sm">مساعد المحافظ </h2>
                   <p className="text-[10px] text-slate-400">اضغط هنا واسحب لتحريك النافذة</p>
                 </div>
               </div>

@@ -28,7 +28,6 @@ import CustomerBalanceAutocomplete from "./pages/transactions/paymentToCustomer"
 import SupplierBalanceAutocomplete from "./pages/transactions/paymentToSupplier";
 import BackupSettings from "./pages/settings/backupSystem";
 import CreateSupplierTransaction from "./pages/transactions/externalTransaction";
-
 function App() {
    const upToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
