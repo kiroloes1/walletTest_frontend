@@ -131,7 +131,7 @@ const menus = [
         roles: ["admin", "manager", "superadmin"]
       },
       {
-        id: "paymentToSupplier",
+        id: "TransactionsPerSupplier",
         label: "عمليات التجار",
         roles: ["admin", "manager", "superadmin"]
       }
