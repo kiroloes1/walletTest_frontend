@@ -65,7 +65,7 @@ const SupplierBalanceAutocomplete = () => {
 
   const [date, setDate] = useState(
     new Date().toLocaleString("sv-SE", {
-      timeZone: "Africa/",
+      timeZone: "Africa/Cairo",
     }).slice(0, 16)
   );
 
@@ -305,7 +305,7 @@ const SupplierBalanceAutocomplete = () => {
       setAmount("");
       setNote("");
       setDate(    new Date().toLocaleString("sv-SE", {
-      timeZone: "Africa/",
+      timeZone: "Africa/Cairo",
     }).slice(0, 16));
       setPaymentData({
         paidAmount: 0,
